@@ -9,12 +9,14 @@ const uploadSchema = new mongoose.Schema(
     },
     fileUrl: { type: String, required: true },
     fileType: { type: String, enum: ["image", "video"], default: "image" },
-    prediction: {
+
+    aiPrediction: {
       speciesId: { type: mongoose.Schema.Types.ObjectId, ref: "Species" },
       label: String,
       confidence: Number,
+      modelVersion: String,
     },
-    aiModelVersion: String,
+
     status: {
       type: String,
       enum: ["pending", "identified", "failed"],

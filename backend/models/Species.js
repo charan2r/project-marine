@@ -1,12 +1,20 @@
-const mongoose = require("mongoose");
-
 const speciesSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
+    commonName: { type: String, required: true },
     scientificName: String,
     description: String,
-    imageUrl: String,
+
+    images: [String],
+    videos: [String],
+
     habitat: String,
+    ecosystem: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Ecosystem",
+    },
+
+    threats: String,
+
     conservationStatus: {
       type: String,
       enum: [
@@ -14,13 +22,19 @@ const speciesSchema = new mongoose.Schema(
         "Vulnerable",
         "Endangered",
         "Critically Endangered",
+        "Extinct in the Wild",
       ],
       default: "Least Concern",
     },
+
+    populationStatus: {
+      type: String,
+      enum: ["Increasing", "Stable", "Decreasing", "Unknown"],
+      default: "Unknown",
+    },
+
     discoveredBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    verified: { type: Boolean, default: false },
+    aiConfidence: Number,
   },
   { timestamps: true }
 );
-
-module.exports = mongoose.model("Species", speciesSchema);
