@@ -3,12 +3,7 @@ const conservationProjectSchema = new mongoose.Schema(
     name: { type: String, required: true },
     description: String,
 
-    projectType: {
-      type: String,
-      enum: ["Cleanup", "Research", "Restoration", "Awareness", "Monitoring"],
-      default: "Research",
-    },
-
+    projectType: String,
     organization: String,
 
     location: {

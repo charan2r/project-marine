@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:push": "drizzle-kit push:pg",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:studio": "drizzle-kit studio",
+    "dev": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +16,15 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.1",
     "express": "^5.1.0",
-    "mongoose": "^8.19.3"
+    "mongoose": "^8.19.3",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "drizzle-kit": "^0.31.8",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }
