@@ -1,36 +1,36 @@
-import { Fish, Users, MapPin, TreePine } from "lucide-react"
+import { Fish, Users, MapPin, TreePine } from "lucide-react";
 
 const stats = [
   {
     label: "Species Catalogued",
     value: "12,500+",
     icon: Fish,
-    description: "Marine species in our database"
+    description: "Marine species in our database",
   },
   {
     label: "Observations",
     value: "245,000+",
     icon: MapPin,
-    description: "Citizen science contributions"
+    description: "Citizen science contributions",
   },
   {
     label: "Active Members",
     value: "35,000+",
     icon: Users,
-    description: "Community participants worldwide"
+    description: "Community participants worldwide",
   },
   {
     label: "Conservation Projects",
     value: "180+",
     icon: TreePine,
-    description: "Active initiatives globally"
+    description: "Active initiatives globally",
   },
-]
+];
 
 export function StatsSection() {
   return (
     <section className="py-16 md:py-24 bg-card">
-      <div className="container px-4 md:px-6">
+      <div className="w-full mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">
             Our Impact
@@ -39,7 +39,7 @@ export function StatsSection() {
             Together We Make a Difference
           </p>
         </div>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
@@ -60,5 +60,5 @@ export function StatsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

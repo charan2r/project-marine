@@ -1,21 +1,22 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Progress } from "@/components/ui/progress"
+import { useState } from "react";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
-import { 
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
   Settings,
   MapPin,
   Calendar,
@@ -31,8 +32,8 @@ import {
   Star,
   Trophy,
   Target,
-  Waves
-} from "lucide-react"
+  Waves,
+} from "lucide-react";
 
 const userProfile = {
   name: "Marina Chen",
@@ -51,10 +52,25 @@ const userProfile = {
     following: 456,
   },
   badges: [
-    { id: 1, name: "Verified Researcher", icon: CheckCircle, color: "text-primary" },
+    {
+      id: 1,
+      name: "Verified Researcher",
+      icon: CheckCircle,
+      color: "text-primary",
+    },
     { id: 2, name: "Top Contributor", icon: Star, color: "text-yellow-500" },
-    { id: 3, name: "Photography Expert", icon: Camera, color: "text-purple-500" },
-    { id: 4, name: "Conservation Champion", icon: Award, color: "text-green-500" },
+    {
+      id: 3,
+      name: "Photography Expert",
+      icon: Camera,
+      color: "text-purple-500",
+    },
+    {
+      id: 4,
+      name: "Conservation Champion",
+      icon: Award,
+      color: "text-green-500",
+    },
   ],
   level: {
     current: 12,
@@ -62,16 +78,56 @@ const userProfile = {
     nextLevel: 3000,
     title: "Ocean Guardian",
   },
-}
+};
 
 const achievements = [
-  { id: 1, name: "First Observation", description: "Submit your first species observation", completed: true, icon: Eye },
-  { id: 2, name: "Species Expert", description: "Correctly identify 50 different species", completed: true, icon: Fish },
-  { id: 3, name: "Community Builder", description: "Help 25 members with identifications", completed: true, icon: MessageSquare },
-  { id: 4, name: "Rare Find", description: "Spot an endangered species", completed: true, icon: Trophy },
-  { id: 5, name: "Globe Trotter", description: "Submit observations from 5 different countries", completed: false, progress: 3, total: 5, icon: MapPin },
-  { id: 6, name: "Master Photographer", description: "Receive 100 likes on your photos", completed: false, progress: 78, total: 100, icon: Camera },
-]
+  {
+    id: 1,
+    name: "First Observation",
+    description: "Submit your first species observation",
+    completed: true,
+    icon: Eye,
+  },
+  {
+    id: 2,
+    name: "Species Expert",
+    description: "Correctly identify 50 different species",
+    completed: true,
+    icon: Fish,
+  },
+  {
+    id: 3,
+    name: "Community Builder",
+    description: "Help 25 members with identifications",
+    completed: true,
+    icon: MessageSquare,
+  },
+  {
+    id: 4,
+    name: "Rare Find",
+    description: "Spot an endangered species",
+    completed: true,
+    icon: Trophy,
+  },
+  {
+    id: 5,
+    name: "Globe Trotter",
+    description: "Submit observations from 5 different countries",
+    completed: false,
+    progress: 3,
+    total: 5,
+    icon: MapPin,
+  },
+  {
+    id: 6,
+    name: "Master Photographer",
+    description: "Receive 100 likes on your photos",
+    completed: false,
+    progress: 78,
+    total: 100,
+    icon: Camera,
+  },
+];
 
 const recentObservations = [
   {
@@ -114,7 +170,7 @@ const recentObservations = [
     likes: 67,
     verified: true,
   },
-]
+];
 
 const forumActivity = [
   {
@@ -137,41 +193,53 @@ const forumActivity = [
     replies: 23,
     date: "3 days ago",
   },
-]
+];
 
 export default function ProfilePage() {
-  const [activeTab, setActiveTab] = useState("observations")
+  const [activeTab, setActiveTab] = useState("observations");
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navigation />
-      
+
       <main className="flex-1">
         {/* Profile Header */}
         <section className="bg-primary/5 border-b">
-          <div className="container mx-auto px-4 py-8">
+          <div className="w-full mx-auto px-4 py-8">
             <div className="flex flex-col gap-6 md:flex-row md:items-start">
               {/* Avatar & Basic Info */}
               <div className="flex flex-col items-center md:items-start gap-4 md:flex-row">
                 <Avatar className="h-24 w-24 md:h-32 md:w-32 border-4 border-background shadow-lg">
-                  <AvatarImage src={userProfile.avatar} alt={userProfile.name} />
-                  <AvatarFallback className="text-2xl">{userProfile.initials}</AvatarFallback>
+                  <AvatarImage
+                    src={userProfile.avatar}
+                    alt={userProfile.name}
+                  />
+                  <AvatarFallback className="text-2xl">
+                    {userProfile.initials}
+                  </AvatarFallback>
                 </Avatar>
-                
+
                 <div className="text-center md:text-left">
                   <div className="flex items-center gap-2 justify-center md:justify-start">
-                    <h1 className="text-2xl font-bold text-foreground">{userProfile.name}</h1>
-                    <Badge variant="secondary" className="bg-primary/10 text-primary">
+                    <h1 className="text-2xl font-bold text-foreground">
+                      {userProfile.name}
+                    </h1>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/10 text-primary"
+                    >
                       <CheckCircle className="h-3 w-3 mr-1" />
                       Verified
                     </Badge>
                   </div>
-                  <p className="text-muted-foreground">{userProfile.username}</p>
-                  
+                  <p className="text-muted-foreground">
+                    {userProfile.username}
+                  </p>
+
                   <p className="mt-3 text-sm text-foreground max-w-lg">
                     {userProfile.bio}
                   </p>
-                  
+
                   <div className="flex items-center gap-4 mt-3 text-sm text-muted-foreground justify-center md:justify-start flex-wrap">
                     <span className="flex items-center gap-1">
                       <MapPin className="h-4 w-4" />
@@ -181,27 +249,34 @@ export default function ProfilePage() {
                       <Calendar className="h-4 w-4" />
                       Joined {userProfile.joined}
                     </span>
-                    <a href={`https://${userProfile.website}`} className="flex items-center gap-1 hover:text-primary">
+                    <a
+                      href={`https://${userProfile.website}`}
+                      className="flex items-center gap-1 hover:text-primary"
+                    >
                       <ExternalLink className="h-4 w-4" />
                       {userProfile.website}
                     </a>
                   </div>
-                  
+
                   {/* Badges */}
                   <div className="flex items-center gap-2 mt-4 justify-center md:justify-start flex-wrap">
                     {userProfile.badges.map((badge) => {
-                      const Icon = badge.icon
+                      const Icon = badge.icon;
                       return (
-                        <Badge key={badge.id} variant="outline" className="gap-1">
+                        <Badge
+                          key={badge.id}
+                          variant="outline"
+                          className="gap-1"
+                        >
                           <Icon className={`h-3 w-3 ${badge.color}`} />
                           {badge.name}
                         </Badge>
-                      )
+                      );
                     })}
                   </div>
                 </div>
               </div>
-              
+
               {/* Actions */}
               <div className="flex gap-2 justify-center md:ml-auto">
                 <Button>Follow</Button>
@@ -215,36 +290,46 @@ export default function ProfilePage() {
                 </Button>
               </div>
             </div>
-            
+
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-8">
               <Card className="text-center">
                 <CardContent className="py-4">
-                  <p className="text-2xl font-bold text-foreground">{userProfile.stats.observations}</p>
+                  <p className="text-2xl font-bold text-foreground">
+                    {userProfile.stats.observations}
+                  </p>
                   <p className="text-sm text-muted-foreground">Observations</p>
                 </CardContent>
               </Card>
               <Card className="text-center">
                 <CardContent className="py-4">
-                  <p className="text-2xl font-bold text-foreground">{userProfile.stats.species}</p>
+                  <p className="text-2xl font-bold text-foreground">
+                    {userProfile.stats.species}
+                  </p>
                   <p className="text-sm text-muted-foreground">Species</p>
                 </CardContent>
               </Card>
               <Card className="text-center">
                 <CardContent className="py-4">
-                  <p className="text-2xl font-bold text-foreground">{userProfile.stats.contributions}</p>
+                  <p className="text-2xl font-bold text-foreground">
+                    {userProfile.stats.contributions}
+                  </p>
                   <p className="text-sm text-muted-foreground">Contributions</p>
                 </CardContent>
               </Card>
               <Card className="text-center">
                 <CardContent className="py-4">
-                  <p className="text-2xl font-bold text-foreground">{userProfile.stats.followers}</p>
+                  <p className="text-2xl font-bold text-foreground">
+                    {userProfile.stats.followers}
+                  </p>
                   <p className="text-sm text-muted-foreground">Followers</p>
                 </CardContent>
               </Card>
               <Card className="text-center col-span-2 md:col-span-1">
                 <CardContent className="py-4">
-                  <p className="text-2xl font-bold text-foreground">{userProfile.stats.following}</p>
+                  <p className="text-2xl font-bold text-foreground">
+                    {userProfile.stats.following}
+                  </p>
                   <p className="text-sm text-muted-foreground">Following</p>
                 </CardContent>
               </Card>
@@ -253,7 +338,7 @@ export default function ProfilePage() {
         </section>
 
         {/* Main Content */}
-        <section className="container mx-auto px-4 py-8">
+        <section className="w-full mx-auto px-4 py-8">
           <div className="flex flex-col gap-8 lg:flex-row">
             {/* Sidebar */}
             <aside className="lg:w-80 shrink-0 space-y-6">
@@ -269,13 +354,19 @@ export default function ProfilePage() {
                 <CardContent>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Progress to Level {userProfile.level.current + 1}</span>
+                      <span className="text-muted-foreground">
+                        Progress to Level {userProfile.level.current + 1}
+                      </span>
                       <span className="font-medium text-foreground">
-                        {userProfile.level.xp} / {userProfile.level.nextLevel} XP
+                        {userProfile.level.xp} / {userProfile.level.nextLevel}{" "}
+                        XP
                       </span>
                     </div>
-                    <Progress 
-                      value={(userProfile.level.xp / userProfile.level.nextLevel) * 100} 
+                    <Progress
+                      value={
+                        (userProfile.level.xp / userProfile.level.nextLevel) *
+                        100
+                      }
                       className="h-2"
                     />
                   </div>
@@ -293,42 +384,56 @@ export default function ProfilePage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {achievements.map((achievement) => {
-                    const Icon = achievement.icon
+                    const Icon = achievement.icon;
                     return (
-                      <div key={achievement.id} className="flex items-start gap-3">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
-                          achievement.completed 
-                            ? "bg-primary/10 text-primary" 
-                            : "bg-muted text-muted-foreground"
-                        }`}>
+                      <div
+                        key={achievement.id}
+                        className="flex items-start gap-3"
+                      >
+                        <div
+                          className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                            achievement.completed
+                              ? "bg-primary/10 text-primary"
+                              : "bg-muted text-muted-foreground"
+                          }`}
+                        >
                           <Icon className="h-5 w-5" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className={`text-sm font-medium ${
-                            achievement.completed ? "text-foreground" : "text-muted-foreground"
-                          }`}>
+                          <p
+                            className={`text-sm font-medium ${
+                              achievement.completed
+                                ? "text-foreground"
+                                : "text-muted-foreground"
+                            }`}
+                          >
                             {achievement.name}
                           </p>
                           <p className="text-xs text-muted-foreground">
                             {achievement.description}
                           </p>
-                          {!achievement.completed && achievement.progress !== undefined && (
-                            <div className="mt-2">
-                              <Progress 
-                                value={(achievement.progress / achievement.total!) * 100} 
-                                className="h-1.5"
-                              />
-                              <p className="text-xs text-muted-foreground mt-1">
-                                {achievement.progress} / {achievement.total}
-                              </p>
-                            </div>
-                          )}
+                          {!achievement.completed &&
+                            achievement.progress !== undefined && (
+                              <div className="mt-2">
+                                <Progress
+                                  value={
+                                    (achievement.progress /
+                                      achievement.total!) *
+                                    100
+                                  }
+                                  className="h-1.5"
+                                />
+                                <p className="text-xs text-muted-foreground mt-1">
+                                  {achievement.progress} / {achievement.total}
+                                </p>
+                              </div>
+                            )}
                         </div>
                         {achievement.completed && (
                           <CheckCircle className="h-5 w-5 text-primary shrink-0" />
                         )}
                       </div>
-                    )
+                    );
                   })}
                 </CardContent>
               </Card>
@@ -338,15 +443,24 @@ export default function ProfilePage() {
             <div className="flex-1">
               <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList className="w-full justify-start">
-                  <TabsTrigger value="observations" className="flex items-center gap-1">
+                  <TabsTrigger
+                    value="observations"
+                    className="flex items-center gap-1"
+                  >
                     <Camera className="h-4 w-4" />
                     Observations
                   </TabsTrigger>
-                  <TabsTrigger value="species" className="flex items-center gap-1">
+                  <TabsTrigger
+                    value="species"
+                    className="flex items-center gap-1"
+                  >
                     <Fish className="h-4 w-4" />
                     Species List
                   </TabsTrigger>
-                  <TabsTrigger value="activity" className="flex items-center gap-1">
+                  <TabsTrigger
+                    value="activity"
+                    className="flex items-center gap-1"
+                  >
                     <MessageSquare className="h-4 w-4" />
                     Activity
                   </TabsTrigger>
@@ -355,7 +469,10 @@ export default function ProfilePage() {
                 <TabsContent value="observations" className="mt-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {recentObservations.map((observation) => (
-                      <Card key={observation.id} className="overflow-hidden group">
+                      <Card
+                        key={observation.id}
+                        className="overflow-hidden group"
+                      >
                         <div className="aspect-video bg-muted relative">
                           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
                           <Waves className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-12 w-12 text-muted-foreground/30" />
@@ -366,8 +483,12 @@ export default function ProfilePage() {
                             </Badge>
                           )}
                           <div className="absolute bottom-3 left-3 right-3">
-                            <h3 className="font-semibold text-white">{observation.species}</h3>
-                            <p className="text-sm text-white/80 italic">{observation.scientificName}</p>
+                            <h3 className="font-semibold text-white">
+                              {observation.species}
+                            </h3>
+                            <p className="text-sm text-white/80 italic">
+                              {observation.scientificName}
+                            </p>
                           </div>
                         </div>
                         <CardContent className="p-4">
@@ -388,7 +509,7 @@ export default function ProfilePage() {
                       </Card>
                     ))}
                   </div>
-                  
+
                   <div className="mt-6 text-center">
                     <Button variant="outline">Load More Observations</Button>
                   </div>
@@ -399,17 +520,32 @@ export default function ProfilePage() {
                     <CardHeader>
                       <CardTitle>Species Identified</CardTitle>
                       <CardDescription>
-                        A collection of all marine species you have observed and identified
+                        A collection of all marine species you have observed and
+                        identified
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {["Blue Whale", "Manta Ray", "Whale Shark", "Clownfish", "Sea Turtle", "Octopus", "Jellyfish", "Seahorse"].map((species) => (
-                          <div key={species} className="flex items-center gap-2 p-3 rounded-lg border hover:bg-muted/50 cursor-pointer">
+                        {[
+                          "Blue Whale",
+                          "Manta Ray",
+                          "Whale Shark",
+                          "Clownfish",
+                          "Sea Turtle",
+                          "Octopus",
+                          "Jellyfish",
+                          "Seahorse",
+                        ].map((species) => (
+                          <div
+                            key={species}
+                            className="flex items-center gap-2 p-3 rounded-lg border hover:bg-muted/50 cursor-pointer"
+                          >
                             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                               <Fish className="h-4 w-4 text-primary" />
                             </div>
-                            <span className="text-sm font-medium text-foreground">{species}</span>
+                            <span className="text-sm font-medium text-foreground">
+                              {species}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -424,22 +560,36 @@ export default function ProfilePage() {
                   <Card>
                     <CardHeader>
                       <CardTitle>Forum Activity</CardTitle>
-                      <CardDescription>Your recent discussions and contributions</CardDescription>
+                      <CardDescription>
+                        Your recent discussions and contributions
+                      </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {forumActivity.map((activity) => (
-                        <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50">
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                            activity.type === "post" ? "bg-primary/10 text-primary" : "bg-secondary/20 text-secondary"
-                          }`}>
+                        <div
+                          key={activity.id}
+                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50"
+                        >
+                          <div
+                            className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
+                              activity.type === "post"
+                                ? "bg-primary/10 text-primary"
+                                : "bg-secondary/20 text-secondary"
+                            }`}
+                          >
                             <MessageSquare className="h-4 w-4" />
                           </div>
                           <div className="flex-1">
                             <p className="text-sm">
                               <span className="text-muted-foreground">
-                                {activity.type === "post" ? "Posted: " : "Replied to: "}
+                                {activity.type === "post"
+                                  ? "Posted: "
+                                  : "Replied to: "}
                               </span>
-                              <Link href={`/forum/${activity.id}`} className="font-medium text-foreground hover:text-primary">
+                              <Link
+                                href={`/forum/${activity.id}`}
+                                className="font-medium text-foreground hover:text-primary"
+                              >
                                 {activity.title}
                               </Link>
                             </p>
@@ -460,8 +610,8 @@ export default function ProfilePage() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
-  )
+  );
 }

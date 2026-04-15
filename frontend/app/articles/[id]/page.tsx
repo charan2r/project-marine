@@ -1,30 +1,43 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/separator"
-import Link from "next/link"
-import { ArrowLeft, Calendar, Clock, User, Heart, Share2, Bookmark, MessageSquare } from "lucide-react"
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  Calendar,
+  Clock,
+  User,
+  Heart,
+  Share2,
+  Bookmark,
+  MessageSquare,
+} from "lucide-react";
 
-const articlesData: Record<string, {
-  id: number
-  title: string
-  excerpt: string
-  content: string
-  image: string
-  author: { name: string; avatar: string; bio: string }
-  date: string
-  readTime: string
-  category: string
-  tags: string[]
-  relatedSpecies: Array<{ id: number; name: string; image: string }>
-}> = {
+const articlesData: Record<
+  string,
+  {
+    id: number;
+    title: string;
+    excerpt: string;
+    content: string;
+    image: string;
+    author: { name: string; avatar: string; bio: string };
+    date: string;
+    readTime: string;
+    category: string;
+    tags: string[];
+    relatedSpecies: Array<{ id: number; name: string; image: string }>;
+  }
+> = {
   "1": {
     id: 1,
     title: "The Future of Coral Reef Conservation",
-    excerpt: "Exploring innovative techniques and technologies being used to restore and protect coral reef ecosystems around the world.",
+    excerpt:
+      "Exploring innovative techniques and technologies being used to restore and protect coral reef ecosystems around the world.",
     content: `
       <p>Coral reefs, often called the rainforests of the sea, are facing unprecedented challenges. Rising ocean temperatures, acidification, and human activities have put these vital ecosystems under severe stress. However, scientists and conservationists around the world are developing innovative solutions to protect and restore these underwater wonderlands.</p>
 
@@ -45,10 +58,12 @@ const articlesData: Record<string, {
       <h2>Looking Forward</h2>
       <p>While the challenges facing coral reefs are immense, the combination of scientific innovation, technological advancement, and community action gives us hope. By supporting conservation efforts and reducing our carbon footprint, we can all play a part in ensuring these magnificent ecosystems survive for future generations.</p>
     `,
-    image: "https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=1200&h=600&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=1200&h=600&fit=crop",
     author: {
       name: "Dr. Maria Santos",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+      avatar:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
       bio: "Marine biologist specializing in coral reef ecology and conservation. 15+ years of field research experience.",
     },
     date: "2024-03-15",
@@ -56,18 +71,30 @@ const articlesData: Record<string, {
     category: "Conservation",
     tags: ["Coral Reefs", "Climate Change", "Restoration", "Technology"],
     relatedSpecies: [
-      { id: 4, name: "Clownfish", image: "https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=200&h=200&fit=crop" },
-      { id: 2, name: "Hawksbill Turtle", image: "https://images.unsplash.com/photo-1591025207163-942350e47db2?w=200&h=200&fit=crop" },
+      {
+        id: 4,
+        name: "Clownfish",
+        image:
+          "https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=200&h=200&fit=crop",
+      },
+      {
+        id: 2,
+        name: "Hawksbill Turtle",
+        image:
+          "https://images.unsplash.com/photo-1591025207163-942350e47db2?w=200&h=200&fit=crop",
+      },
     ],
   },
-}
+};
 
 const defaultArticle = {
   id: 0,
   title: "Article",
   excerpt: "Article content is being prepared.",
-  content: "<p>This article content is being prepared. Check back soon for the full article.</p>",
-  image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=600&fit=crop",
+  content:
+    "<p>This article content is being prepared. Check back soon for the full article.</p>",
+  image:
+    "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=600&fit=crop",
   author: {
     name: "OceanWatch Team",
     avatar: "",
@@ -78,11 +105,15 @@ const defaultArticle = {
   category: "General",
   tags: ["Marine", "Ocean"],
   relatedSpecies: [],
-}
+};
 
-export default async function ArticleDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params
-  const article = articlesData[id] || { ...defaultArticle, id: parseInt(id) }
+export default async function ArticleDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const article = articlesData[id] || { ...defaultArticle, id: parseInt(id) };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -97,8 +128,12 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           <div className="absolute inset-0 flex items-end">
-            <div className="container px-4 md:px-6 pb-8">
-              <Button variant="ghost" className="mb-4 text-white hover:text-white hover:bg-white/20" asChild>
+            <div className="w-full mx-auto px-4 md:px-6 pb-8">
+              <Button
+                variant="ghost"
+                className="mb-4 text-white hover:text-white hover:bg-white/20"
+                asChild
+              >
                 <Link href="/articles">
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back to Articles
@@ -112,13 +147,19 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                 <div className="flex items-center gap-2">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={article.author.avatar} />
-                    <AvatarFallback>{article.author.name.charAt(0)}</AvatarFallback>
+                    <AvatarFallback>
+                      {article.author.name.charAt(0)}
+                    </AvatarFallback>
                   </Avatar>
                   <span>{article.author.name}</span>
                 </div>
                 <span className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
-                  {new Date(article.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                  {new Date(article.date).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </span>
                 <span className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
@@ -131,7 +172,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
         {/* Content */}
         <section className="py-12">
-          <div className="container px-4 md:px-6">
+          <div className="w-full mx-auto px-4 md:px-6">
             <div className="grid lg:grid-cols-3 gap-12">
               {/* Main Content */}
               <div className="lg:col-span-2">
@@ -152,7 +193,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                 </div>
 
                 {/* Article Content */}
-                <article 
+                <article
                   className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary"
                   dangerouslySetInnerHTML={{ __html: article.content }}
                 />
@@ -162,7 +203,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                   <h4 className="text-sm font-medium mb-3">Tags</h4>
                   <div className="flex flex-wrap gap-2">
                     {article.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">{tag}</Badge>
+                      <Badge key={tag} variant="secondary">
+                        {tag}
+                      </Badge>
                     ))}
                   </div>
                 </div>
@@ -173,11 +216,15 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                     <div className="flex items-start gap-4">
                       <Avatar className="h-16 w-16">
                         <AvatarImage src={article.author.avatar} />
-                        <AvatarFallback className="text-lg">{article.author.name.charAt(0)}</AvatarFallback>
+                        <AvatarFallback className="text-lg">
+                          {article.author.name.charAt(0)}
+                        </AvatarFallback>
                       </Avatar>
                       <div>
                         <h4 className="font-semibold">{article.author.name}</h4>
-                        <p className="text-sm text-muted-foreground mt-1">{article.author.bio}</p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {article.author.bio}
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -209,13 +256,15 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                 {article.relatedSpecies.length > 0 && (
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-base">Related Species</CardTitle>
+                      <CardTitle className="text-base">
+                        Related Species
+                      </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3">
                         {article.relatedSpecies.map((species) => (
-                          <Link 
-                            key={species.id} 
+                          <Link
+                            key={species.id}
                             href={`/species/${species.id}`}
                             className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors"
                           >
@@ -224,7 +273,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                               alt={species.name}
                               className="w-12 h-12 rounded-lg object-cover"
                             />
-                            <span className="font-medium text-sm">{species.name}</span>
+                            <span className="font-medium text-sm">
+                              {species.name}
+                            </span>
                           </Link>
                         ))}
                       </div>
@@ -234,7 +285,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base">More in {article.category}</CardTitle>
+                    <CardTitle className="text-base">
+                      More in {article.category}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <Button variant="outline" className="w-full" asChild>
@@ -265,5 +318,5 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       </main>
       <Footer />
     </div>
-  )
+  );
 }

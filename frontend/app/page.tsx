@@ -1,17 +1,17 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { HeroSection } from "@/components/home/hero-section"
-import { StatsSection } from "@/components/home/stats-section"
-import { FeaturesSection } from "@/components/home/features-section"
-import { FeaturedSpecies } from "@/components/home/featured-species"
-import { ProjectsSection } from "@/components/home/projects-section"
-import { CTASection } from "@/components/home/cta-section"
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { HeroSection } from "@/components/home/hero-section";
+import { StatsSection } from "@/components/home/stats-section";
+import { FeaturesSection } from "@/components/home/features-section";
+import { FeaturedSpecies } from "@/components/home/featured-species";
+import { ProjectsSection } from "@/components/home/projects-section";
+import { CTASection } from "@/components/home/cta-section";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="w-full min-h-screen flex flex-col">
       <Navigation />
-      <main className="flex-1">
+      <main className="flex-1 w-full">
         <HeroSection />
         <StatsSection />
         <FeaturesSection />
@@ -21,5 +21,5 @@ export default function HomePage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
