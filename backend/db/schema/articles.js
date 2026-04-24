@@ -1,4 +1,4 @@
-import {
+const {
   pgTable,
   uuid,
   text,
@@ -6,10 +6,10 @@ import {
   timestamp,
   integer,
   jsonb,
-} from "drizzle-orm/pg-core";
-import { users } from "./users";
+} = require("drizzle-orm/pg-core");
+const { users } = require("./users");
 
-export const articles = pgTable("articles", {
+const articles = pgTable("articles", {
   id: uuid("id").defaultRandom().primaryKey(),
 
   title: varchar("title", { length: 255 }).notNull(),
@@ -25,22 +25,18 @@ export const articles = pgTable("articles", {
 
   references: text("references").array(),
 
-  relatedSpecies: text("related_species").array(), // store UUIDs as strings
+  relatedSpecies: text("related_species").array(),
   relatedProjects: text("related_projects").array(),
 
   published: varchar("published", { length: 10 }).default("false"),
 
   views: integer("views").default(0),
 
-  likes: text("likes").array(), // store user IDs
+  likes: text("likes").array(),
 
-  comments: jsonb("comments").$type<
-    {
-      userId: string;
-      message: string;
-      createdAt: string;
-    }[]
-  >(),
+  comments: jsonb("comments"),
 
   createdAt: timestamp("created_at").defaultNow(),
 });
+
+module.exports = { articles };

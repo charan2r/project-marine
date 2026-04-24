@@ -1,14 +1,14 @@
-import {
+const {
   pgTable,
   uuid,
   text,
   varchar,
   timestamp,
   jsonb,
-} from "drizzle-orm/pg-core";
-import { users } from "./users";
+} = require("drizzle-orm/pg-core");
+const { users } = require("./users");
 
-export const forumPosts = pgTable("forum_posts", {
+const forumPosts = pgTable("forum_posts", {
   id: uuid("id").defaultRandom().primaryKey(),
 
   userId: uuid("user_id")
@@ -20,13 +20,9 @@ export const forumPosts = pgTable("forum_posts", {
 
   tags: text("tags").array(),
 
-  comments: jsonb("comments").$type<
-    {
-      userId: string;
-      text: string;
-      createdAt: string;
-    }[]
-  >(),
+  comments: jsonb("comments"),
 
   createdAt: timestamp("created_at").defaultNow(),
 });
+
+module.exports = { forumPosts };

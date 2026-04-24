@@ -1,6 +1,12 @@
-import { pgTable, uuid, text, varchar, timestamp } from "drizzle-orm/pg-core";
+const {
+  pgTable,
+  uuid,
+  text,
+  varchar,
+  timestamp,
+} = require("drizzle-orm/pg-core");
 
-export const ecosystems = pgTable("ecosystems", {
+const ecosystems = pgTable("ecosystems", {
   id: uuid("id").defaultRandom().primaryKey(),
 
   name: varchar("name", { length: 150 }).notNull(),
@@ -12,3 +18,5 @@ export const ecosystems = pgTable("ecosystems", {
 
   createdAt: timestamp("created_at").defaultNow(),
 });
+
+module.exports = { ecosystems };

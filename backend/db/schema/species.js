@@ -1,14 +1,14 @@
-import {
+const {
   pgTable,
   uuid,
   varchar,
   text,
   boolean,
   timestamp,
-} from "drizzle-orm/pg-core";
-import { users } from "./users";
+} = require("drizzle-orm/pg-core");
+const { users } = require("./users");
 
-export const species = pgTable("species", {
+const species = pgTable("species", {
   id: uuid("id").defaultRandom().primaryKey(),
 
   name: varchar("name", { length: 150 }).notNull(),
@@ -24,3 +24,5 @@ export const species = pgTable("species", {
 
   createdAt: timestamp("created_at").defaultNow(),
 });
+
+module.exports = { species };

@@ -1,15 +1,15 @@
-import {
+const {
   pgTable,
   uuid,
   text,
   varchar,
   timestamp,
   jsonb,
-} from "drizzle-orm/pg-core";
-import { users } from "./users";
-import { species } from "./species";
+} = require("drizzle-orm/pg-core");
+const { users } = require("./users");
+const { species } = require("./species");
 
-export const observations = pgTable("observations", {
+const observations = pgTable("observations", {
   id: uuid("id").defaultRandom().primaryKey(),
 
   userId: uuid("user_id").references(() => users.id),
@@ -18,17 +18,11 @@ export const observations = pgTable("observations", {
   mediaUrl: text("media_url").notNull(),
   mediaType: varchar("media_type", { length: 10 }), // image | video
 
-  location: jsonb("location").$type<{
-    lat: number;
-    lng: number;
-    placeName?: string;
-  }>(),
+  location: jsonb("location"),
 
-  aiPrediction: jsonb("ai_prediction").$type<{
-    label: string;
-    confidence: number;
-    modelVersion: string;
-  }>(),
+  aiPrediction: jsonb("ai_prediction"),
 
   createdAt: timestamp("created_at").defaultNow(),
 });
+
+module.exports = { observations };

@@ -1,13 +1,21 @@
-import {
+const {
   pgTable,
   uuid,
   varchar,
   text,
   timestamp,
   jsonb,
-} from "drizzle-orm/pg-core";
+  pgEnum,
+} = require("drizzle-orm/pg-core");
 
-export const users = pgTable("users", {
+const userRoleEnum = pgEnum("user_role", [
+  "user",
+  "admin",
+  "researcher",
+  "marine_biologist",
+]);
+
+const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey(),
 
   firstName: varchar("first_name", { length: 100 }).notNull(),
@@ -22,13 +30,12 @@ export const users = pgTable("users", {
 
   interests: text("interests").array(),
 
-  preferences: jsonb("preferences").$type<{
-    language: string;
-    emailNotifications: boolean;
-  }>(),
+  preferences: jsonb("preferences"),
 
-  role: varchar("role", { length: 30 }).default("user"),
+  role: userRoleEnum("role").default("user"),
 
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
+
+module.exports = { users, userRoleEnum };

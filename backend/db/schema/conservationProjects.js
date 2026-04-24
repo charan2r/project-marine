@@ -1,4 +1,4 @@
-import {
+const {
   pgTable,
   uuid,
   text,
@@ -6,10 +6,10 @@ import {
   timestamp,
   numeric,
   jsonb,
-} from "drizzle-orm/pg-core";
-import { users } from "./users";
+} = require("drizzle-orm/pg-core");
+const { users } = require("./users");
 
-export const conservationProjects = pgTable("conservation_projects", {
+const conservationProjects = pgTable("conservation_projects", {
   id: uuid("id").defaultRandom().primaryKey(),
 
   name: varchar("name", { length: 255 }).notNull(),
@@ -19,12 +19,7 @@ export const conservationProjects = pgTable("conservation_projects", {
 
   organization: varchar("organization", { length: 255 }),
 
-  location: jsonb("location").$type<{
-    country: string;
-    city?: string;
-    lat?: number;
-    lng?: number;
-  }>(),
+  location: jsonb("location"),
 
   startDate: timestamp("start_date"),
   endDate: timestamp("end_date"),
@@ -36,18 +31,13 @@ export const conservationProjects = pgTable("conservation_projects", {
 
   gallery: text("gallery").array(),
 
-  progressUpdates: jsonb("progress_updates").$type<
-    {
-      title: string;
-      description: string;
-      mediaUrl?: string;
-      createdAt: string;
-    }[]
-  >(),
+  progressUpdates: jsonb("progress_updates"),
 
-  volunteers: text("volunteers").array(), // user IDs
+  volunteers: text("volunteers").array(),
 
   createdBy: uuid("created_by").references(() => users.id),
 
   createdAt: timestamp("created_at").defaultNow(),
 });
+
+module.exports = { conservationProjects };
